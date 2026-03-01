@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    env_file:
+      - .env
+
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      POSTGRES_USER: test_user
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: test_user
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:
