@@ -23,7 +23,7 @@ nano .env
 2. Скопировать переменные 
 ```env
 API_KEY=your_exchangerate_api_key
-DB=postgresql://test_user:1234@db:8080/test_user?sslmode=disable
+DB=postgresql://test_user:1234@db:5432/test_user?sslmode=disable
 REQUEST_INTERVAL=60
 ```
 
