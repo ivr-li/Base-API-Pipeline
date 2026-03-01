@@ -5,18 +5,25 @@ services:
     build: .
     env_file:
       - .env
+    depends_on:
+      db:
+        condition: service_healthy
 
   db:
     image: postgres
     restart: always
     ports:
-      - "8080:8080"
+      - "8080:5432"
     environment:
       POSTGRES_USER: test_user
       POSTGRES_PASSWORD: 1234
       POSTGRES_DB: test_user
     volumes:
-      - pg_data:/var/lib/postgresql/data
+      - pg_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U test_user"]
+      interval: 5s
+      timeout: 5s
 
 volumes:
   pg_data:
