@@ -94,6 +94,3 @@ class DB:
         """Drop all tables"""
         with self._context_manager() as cur:
             cur.execute("DROP TABLE IF EXISTS rates, requests CASCADE;")
-
-
-DATABASE = DB()
